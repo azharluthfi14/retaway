@@ -1,9 +1,12 @@
 import Layout from "../components/Layout";
 import Grid from "../components/Grid";
+import { PrismaClient } from "@prisma/client";
+// import homes from "../data.json";
 
-import homes from "../data.json";
+// Create instant with prisma client
+const prisma = new PrismaClient();
 
-export default function index() {
+export default function index({ homes = [] }) {
   return (
     <Layout>
       <h1 className="text-xl font-medium text-gray-800">
@@ -17,4 +20,15 @@ export default function index() {
       </div>
     </Layout>
   );
+}
+
+// SSR function
+export async function getServerSideProps() {
+  // Get all home data
+  const homes = await prisma.home.findMany();
+  return {
+    props: {
+      homes: JSON.parse(JSON.stringify(homes)),
+    },
+  };
 }
