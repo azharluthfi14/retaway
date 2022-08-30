@@ -1,39 +1,53 @@
 import { useState, Fragment } from "react";
 import { useRouter } from "next/router";
+import { useSession, signOut } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import { Menu, Transition } from "@headlessui/react";
 import AuthModal from "./AuthModal";
+import {
+  HeartIcon,
+  HomeIcon,
+  ArrowRightOnRectangleIcon,
+  PlusIcon,
+  SparklesIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
+
+const menuItems = [
+  {
+    label: "List a new home",
+    icon: PlusIcon,
+    href: "/list",
+  },
+  {
+    label: "My homes",
+    icon: HomeIcon,
+    href: "/homes",
+  },
+  {
+    label: "Favorites",
+    icon: HeartIcon,
+    href: "/favorites",
+  },
+  {
+    label: "Log out",
+    icon: ArrowRightOnRectangleIcon,
+    onClick: signOut,
+  },
+];
 
 const Layout = ({ children = null }) => {
   const router = useRouter();
+  const { data: session, status } = useSession();
   const [showModal, setShowModal] = useState(false);
-  const user = null;
-  const isLoadingUser = false;
+  const user = session?.user;
+  const isLoadingUser = status === "loading";
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
-
-  const menuItems = [
-    {
-      label: "List a new home",
-      href: "/list",
-    },
-    {
-      label: "My homes",
-      href: "/homes",
-    },
-    {
-      label: "Favorites",
-      href: "/favorites",
-    },
-    {
-      label: "Log out",
-      onClick: () => null,
-    },
-  ];
 
   return (
     <>
@@ -163,30 +177,34 @@ const Layout = ({ children = null }) => {
                         </div>
 
                         <div className="py-2">
-                          {menuItems.map(({ label, href, onClick }) => (
-                            <div
-                              key={label}
-                              className="px-2 last:border-t last:pt-2 last:mt-2"
-                            >
-                              <Menu.Item>
-                                {href ? (
-                                  <Link href={href}>
-                                    <a className="flex">
-                                      <span>{label}</span>
-                                    </a>
-                                  </Link>
-                                ) : (
-                                  <button
-                                    onClick={onClick}
-                                    className="w-full flex items-center space-x-2 py-2 
+                          {menuItems.map(
+                            ({ label, href, onClick, icon: Icon }) => (
+                              <div
+                                key={label}
+                                className="px-2 last:border-t last:pt-2 last:mt-2"
+                              >
+                                <Menu.Item>
+                                  {href ? (
+                                    <Link href={href}>
+                                      <a className="flex items-center space-x-2 py-2 px-4 rounded-md hover:bg-gray-100">
+                                        <Icon className="w-5 h-5 shrink-0 text-gray-500" />
+                                        <span>{label}</span>
+                                      </a>
+                                    </Link>
+                                  ) : (
+                                    <button
+                                      onClick={onClick}
+                                      className="w-full flex items-center space-x-2 py-2 
                                             px-4 rounded-md hover:bg-gray-100"
-                                  >
-                                    <span>{label}</span>
-                                  </button>
-                                )}
-                              </Menu.Item>
-                            </div>
-                          ))}
+                                    >
+                                      <Icon className="w-5 h-5 shrink-0 text-gray-500" />
+                                      <span>{label}</span>
+                                    </button>
+                                  )}
+                                </Menu.Item>
+                              </div>
+                            )
+                          )}
                         </div>
                       </Menu.Items>
                     </Transition>
