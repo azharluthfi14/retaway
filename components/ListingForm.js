@@ -80,7 +80,7 @@ const ListingForm = ({
 
   return (
     <div>
-      <div className="mb-8 max-w-md">
+      <div className="mb-8 w-full">
         <ImageUpload
           initialImage={{ src: image, alt: initialFormValues.title }}
           onChangePicture={upload}

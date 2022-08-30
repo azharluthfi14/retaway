@@ -1,8 +1,9 @@
 import Layout from "../components/Layout";
 import ListingForm from "../components/ListingForm";
+import axios from "axios";
 
 const create = () => {
-  const addHome = () => null;
+  const addHome = (data) => axios.post("/api/home", data);
   return (
     <Layout>
       <div className="max-w-screen-sm mx-auto">

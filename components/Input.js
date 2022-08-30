@@ -19,7 +19,7 @@ const Input = ({ type = "", label = "", className = "", ...props }) => {
             {...field}
             {...props}
             className={classNames(
-              `w-full shadow-sm rounded-md py-2 pl-4 truncate border focus:outline-none 
+              `w-full shadow-sm rounded-md py-2 p-4 truncate border focus:outline-none 
             focus:ring-4 focus:ring-opacity-20 transition disabled:opacity-50 disabled:cursor-not-allowed`,
               error
                 ? "border-red-400 text-red-800 focus:border-red-400 focus:ring-red-400"

@@ -24,14 +24,14 @@ const Card = ({
     <Link href={`/homes/${id}`}>
       <a className="block w-full">
         <div className="relative">
-          <div className="bg-gray-200 rounded-lg shadow overflow-hidden aspect-w-16 aspect-h-9">
+          <div className="bg-gray-200 rounded-lg shadow overflow-hidden aspect-w-14 aspect-h-14">
             {image ? (
               <Image
                 src={image}
                 alt={title}
                 layout="fill"
                 objectFit="cover"
-                className="hover:opacity-80 transition"
+                className="hover:opacity-90 hover:scale-105 ease-in-out duration-300  transition"
               />
             ) : null}
           </div>
