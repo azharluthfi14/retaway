@@ -6,6 +6,17 @@ import { PrismaClient } from "@prisma/client";
 // Create instant with prisma client
 const prisma = new PrismaClient();
 
+// SSR function
+export async function getServerSideProps() {
+  // Get all home data
+  const homes = await prisma.home.findMany();
+  return {
+    props: {
+      homes: JSON.parse(JSON.stringify(homes)),
+    },
+  };
+}
+
 export default function index({ homes = [] }) {
   return (
     <Layout>
@@ -20,15 +31,4 @@ export default function index({ homes = [] }) {
       </div>
     </Layout>
   );
-}
-
-// SSR function
-export async function getServerSideProps() {
-  // Get all home data
-  const homes = await prisma.home.findMany();
-  return {
-    props: {
-      homes: JSON.parse(JSON.stringify(homes)),
-    },
-  };
 }

@@ -176,18 +176,20 @@ export default function AuthModal({ show = false, onClose = () => null }) {
               {/* Close icon */}
               <button
                 onClick={closeModal}
-                className="absolute top-2 right-2 shrink-0 p-1 rounded-md hover:bg-gray-100 transition focus:outline-none"
+                className="absolute top-2 right-2 shrink-0 p-1.5 rounded-md hover:bg-gray-100 transition focus:outline-none"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
                   viewBox="0 0 24 24"
-                  fill="currentColor"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
                   className="w-5 h-5"
                 >
                   <path
-                    fillRule="evenodd"
-                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z"
-                    clipRule="evenodd"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
               </button>
