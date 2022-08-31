@@ -69,10 +69,12 @@ const Card = ({
           </li>
         </ol>
         <p className="mt-2">
-          {new Intl.NumberFormat("id-ID", {
-            style: "currency",
-            currency: "IDR",
-          }).format(price ?? 0)}{" "}
+          <span className="font-bold">
+            {new Intl.NumberFormat("id-ID", {
+              style: "currency",
+              currency: "IDR",
+            }).format(price ?? 0)}
+          </span>{" "}
           <span className="text-gray-500">/night</span>
         </p>
       </a>
