@@ -6,6 +6,7 @@ const nextConfig = {
     domains: [
       "uwslpioplrdholpotqvg.supabase.co",
       "uwslpioplrdholpotqvg.supabase.in",
+      "lh3.googleusercontent.com",
     ],
   },
 };
